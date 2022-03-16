@@ -1,4 +1,4 @@
-FROM node:12
+FROM node:14
 
 RUN apt-get update && apt-get install -y libaio1 wget unzip
 
@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y libaio1 wget unzip
 WORKDIR /app
 
 COPY ["package.json", "yarn.lock", "./"]
-RUN yarn
+RUN yarn install --network-timeout 1000000
 
 COPY . .
 
